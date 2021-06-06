@@ -7,12 +7,13 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.List;
 
-@Entity
-@Table(name = "players")
 @Data
-public class Player {
+@Entity
+@Table(name="players")
+public class Player implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,18 +21,22 @@ public class Player {
     @NotBlank
     @NotNull
     @Size(max = 100)
+    @Column(name="username", nullable=false)
     private String username;
 
     @NotNull
     @NotBlank
     @Size(max = 100)
+    @Column(name="password", nullable=false)
     private String password;
 
     @NotNull
+    @Column(name="hours", nullable=false)
     private int hours;
 
     @NotNull
     @NotBlank
+    @Column(name="last_connection", nullable=false)
     private String last_connection;
 
     @ManyToMany(fetch = FetchType.LAZY,

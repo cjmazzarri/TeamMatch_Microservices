@@ -33,10 +33,12 @@ public class Filter {
     @NotBlank
     @NotNull
     @Size(max = 100)
+    @Column(name="game_style", nullable=false)
     private String gameStyle;
 
     @NotBlank
     @NotNull
+    @Column(name="account_level", nullable=false)
     private int accountLevel;
 
     @NotBlank
