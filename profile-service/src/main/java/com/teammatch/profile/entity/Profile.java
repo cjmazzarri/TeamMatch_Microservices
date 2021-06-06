@@ -22,7 +22,7 @@ public class Profile {
     @NotBlank
     @NotNull
     @Size(max = 20)
-    @Column(name = "full_names")
+    @Column(name = "full_name")
     private String fullName;
 
     @NotBlank
@@ -53,7 +53,7 @@ public class Profile {
     @NotBlank
     @NotNull
     @Size(max = 30)
-    private Date birthDate;
+    private String birthDate;
 
     @Transient
     private Player player;
