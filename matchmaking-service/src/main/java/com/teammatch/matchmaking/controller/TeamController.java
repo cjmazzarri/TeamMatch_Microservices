@@ -26,7 +26,7 @@ public class TeamController {
     @Autowired
     private TeamService teamService;
 
-    @PostMapping("/teams/")
+    @PostMapping("/teams")
     public TeamResource createTeam(@RequestBody @Valid SaveTeamResource resource){
         Team team = convertToEntity(resource);
         return convertToResource(teamService.createTeam(team));
@@ -37,7 +37,7 @@ public class TeamController {
         return convertToResource(teamService.getTeamById(teamId));
     }
 
-    @GetMapping("/teams/")
+    @GetMapping("/teams")
     public Page<TeamResource> getAllTeams(Pageable pageable){
         Page<Team> teamsPage = teamService.getAllTeams(pageable);
         List<TeamResource> resources = teamsPage.getContent().stream().map(this::convertToResource).collect(Collectors.toList());

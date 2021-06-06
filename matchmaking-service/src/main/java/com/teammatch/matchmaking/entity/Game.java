@@ -23,6 +23,7 @@ public class Game {
     private String name;
 
     @NotNull
+    @Column(name="game_team_size", nullable=false)
     private int gameTeamSize;
 
     @ManyToMany(fetch = FetchType.LAZY,
