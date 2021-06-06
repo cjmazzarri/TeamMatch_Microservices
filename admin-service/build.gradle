@@ -1,0 +1,24 @@
+plugins {
+    id 'org.springframework.boot' version '2.5.0'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+group = 'com.teammatch'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: 'de.codecentric', name: 'spring-boot-admin-starter-server', version: '2.3.0'
+    //https://mvnrepository.com/artifact/de.codecentric/spring-boot-admin-dependencies
+    implementation group: 'de.codecentric', name: 'spring-boot-admin-dependencies', version: '2.3.0', ext: 'pom'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+    useJUnitPlatform()
+}
