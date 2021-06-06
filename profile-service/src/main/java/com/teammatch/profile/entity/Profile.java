@@ -1,5 +1,6 @@
 package com.teammatch.profile.entity;
 
+import com.teammatch.profile.model.Player;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -15,6 +16,7 @@ import java.util.Date;
 public class Profile {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank
@@ -53,11 +55,9 @@ public class Profile {
     @Size(max = 30)
     private Date birthDate;
 
-    /*
-    @OneToOne(mappedBy = "profile")
-    @JsonIgnore
+    @Transient
     private Player player;
-    */
+
 
     public Profile setId(Long id) {
         this.id = id;
