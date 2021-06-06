@@ -13,5 +13,5 @@ public class ProfileResource {
     private String gender;
     private String email;
     private String phoneNumber;
-    private Date birthDate;
+    private String birthDate;
 }

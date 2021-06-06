@@ -5,6 +5,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @FeignClient(name = "profile-service")
 @RequestMapping(value = "/profiles")
-public interface ProfileService {
+public interface PlayerClient {
     //TODO: Implementar los metodos a utilizar
 }
