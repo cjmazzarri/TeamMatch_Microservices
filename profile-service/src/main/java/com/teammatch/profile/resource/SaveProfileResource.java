@@ -45,5 +45,5 @@ public class SaveProfileResource {
     @NotBlank
     @NotNull
     @Size(max = 30)
-    private Date birthDate;
+    private String birthDate;
 }
