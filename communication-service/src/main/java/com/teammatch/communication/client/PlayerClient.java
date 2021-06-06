@@ -5,6 +5,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @FeignClient(name = "communication-service")
 @RequestMapping(value = "/communications")
-public interface CommunicationClient {
+public interface PlayerClient {
     //Aqui colocar todos los metodos a utilizar
 }
