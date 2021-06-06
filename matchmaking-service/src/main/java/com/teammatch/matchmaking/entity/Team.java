@@ -18,15 +18,18 @@ public class Team {
 
     @NotNull
     @NotBlank
+    @Column(name="team_name", nullable=false)
     private String teamName;
 
     @NotNull
+    @Column(name="team_size", nullable=false)
     private int teamSize;
 
     @NotNull
     float average;
 
     @NotNull
+    @Column(name="hours_played", nullable=false)
     float hoursPlayed;
 
     @ManyToMany(fetch = FetchType.LAZY,
