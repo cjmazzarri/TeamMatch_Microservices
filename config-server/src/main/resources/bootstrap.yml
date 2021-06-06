@@ -5,7 +5,7 @@ spring:
     config:
       server:
        git:
-        uri: https://github.com/Juanca0312/config-server-TeamMatch
+        uri: https://github.com/cjmazzarri/TeamMatch_Microservices
         searchPaths: config-data
         username: ${GIT_USER}
         password: ${GIT_PASSWORD}
