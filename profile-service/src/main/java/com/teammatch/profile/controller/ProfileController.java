@@ -45,7 +45,7 @@ public class ProfileController {
     }
 
     @PostMapping("{id}/profiles")
-    @Operation(summary = "Create  Profile", description = "Create a new profile from player", tags = { "profiles" })
+    @Operation(summary = "Create Profile", description = "Create a new profile from player", tags = { "profiles" })
     public ProfileResource createProfile(@PathVariable(name = "id") Long playerId, @Valid @RequestBody SaveProfileResource resource)  {
         Profile profile = convertToEntity(resource);
         profile.setId(playerId);
@@ -60,7 +60,7 @@ public class ProfileController {
     }
 
     @DeleteMapping("{id}/profiles")
-    @Operation(summary = "Delete a Profile", description = "Delete  a profile from player", tags = { "profiles" })
+    @Operation(summary = "Delete a Profile", description = "Delete a profile from player", tags = { "profiles" })
     public ResponseEntity<?> deleteProfile(@PathVariable(name = "id") Long profileId) {
         return profileService.deleteProfile(profileId);
     }
