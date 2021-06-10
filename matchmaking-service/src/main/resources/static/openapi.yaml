@@ -10,6 +10,8 @@ tags:
     description: Everything about your TeamMatch games.
   - name: Team
     description: Everything about your TeamMatch teams.
+  - name: Filter
+    description: Everything about your TeamMatch filters.
 paths:
   /api/games/{gameId}:
     get:
@@ -195,6 +197,106 @@ paths:
           description: "Invalid team format"
         "404":
           description: "Team not found"
+
+  /api/filters:
+    post:
+      tags:
+        - Filter
+      summary: "Create Filter"
+      description: "Create a new filter for TeamMatch"
+      operationId: "createFilter"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SaveFilterResource'
+        required: true
+      responses:
+        "200":
+          description: "Successful operation"
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/FilterResource'
+        "400":
+          description: "Invalid filter format"
+
+  /api/filters/{filterId}:
+    get:
+      tags:
+        - Filter
+      summary: "Get Filter by Id"
+      description: "Returns a filter by the Filter Id from TeamMatch"
+      operationId: "getFilterById"
+      parameters:
+        - name: "filterId"
+          in: "path"
+          description: "ID of filter to return"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      responses:
+        "200":
+          description: "Successful operation"
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/FilterResource'
+        "404":
+          description: "Team with Filter ID not found"
+    put:
+      tags:
+        - Filter
+      summary: "Update Filter"
+      description: "Updates a filter from TeamMatch"
+      operationId: "updateFilter"
+      parameters:
+        - name: "filterId"
+          in: "path"
+          description: "ID of filter to update team"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SaveFilterResource'
+        required: true
+      responses:
+        "200":
+          description: "Successful operation"
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/FilterResource'
+        "400":
+          description: "Invalid filter format"
+        "404":
+          description: "Filter not found"
+    delete:
+      tags:
+        - Filter
+      summary: "Delete Filter"
+      description: "Deletes a filter from TeamMatch"
+      operationId: "deleteFilter"
+      parameters:
+        - name: "filterId"
+          in: "path"
+          description: "Deletion of a Filter"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      responses:
+        "200":
+          description: "Successful operation"
+          content:
+            '*/*':
+              schema:
+                type: object
 components:
   schemas:
     SaveGameResource:
@@ -267,3 +369,56 @@ components:
         hoursPlayed:
           type: integer
           example: 5
+    SaveFilterResource:
+      required:
+        - game
+        - age
+        - region
+        - gameStyle
+        - accountLevel
+        - rating
+      type: object
+      properties:
+        game:
+          type: string
+          example: "APEX Legends"
+        age:
+          type: integer
+          example: 20
+        region:
+          type: string
+          example: "Peru"
+        gameStyle:
+          type: string
+          example: "casual"
+        accountLevel:
+          type: integer
+          example: 34
+        rating:
+          type: number
+          example: 3.4
+    FilterResource:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        game:
+          type: string
+          example: "APEX Legends"
+        age:
+          type: integer
+          example: 20
+        region:
+          type: string
+          example: "Peru"
+        gameStyle:
+          type: string
+          example: "casual"
+        accountLevel:
+          type: integer
+          example: 34
+        rating:
+          type: number
+          example: 3.4
