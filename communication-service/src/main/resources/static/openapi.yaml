@@ -1,0 +1,421 @@
+openapi: 3.0.1
+info:
+  title: Communication Service API
+  description: "This is the documentation of Communication TeamMatch microservice. You can find out more about     Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/) ."
+  version: "1.0"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "U201814268@upc.edu.pe"
+servers:
+  - url: http://localhost:8080
+    description: Generated server url
+tags:
+  - name: Chats
+    description: Everything about Chat endpoints
+  - name: Messages
+    description: Everything about Messages endpoints
+paths:
+  /api/chats/{chatId}/messages/{messageId}:
+    get:
+      tags:
+        - Messages
+      summary: Get Message by Chat Id and Message Id
+      description: Retuns a message by chat Id and message Id from TeamMatch.
+      operationId: getMessageByIdAndChatId
+      parameters:
+        - name: chatId
+          in: path
+          description: Id of a chat
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: messageId
+          in: path
+          description: Id of a message
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: "Successful operation"
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/MessageResource'
+        "400":
+          description: "Invalid chat Id or message Id"
+        "404":
+          description: "Message not found"
+    put:
+      tags:
+        - Messages
+      summary: Update Message by Chat Id and Message Id
+      description: Updates a message by Chat Id and Message Id from TeamMatch
+      operationId: updateMessage
+      parameters:
+        - name: chatId
+          in: path
+          description: Id of a chat
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: messageId
+          in: path
+          description: Id of a message
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SaveMessageResource'
+      responses:
+        "200":
+          description: "Successful operation"
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/MessageResource'
+        "400":
+          description: "Invalid chat Id or message Id"
+        "404":
+          description: "Message not found"
+    delete:
+      tags:
+        - Messages
+      summary: Delete Message by Chat Id and Message Id
+      description: Deletes a new message by the Chat Id and Message Id from TeamMatch
+      operationId: deleteMessage
+      parameters:
+        - name: chatId
+          in: path
+          description: Id of a chat
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: messageId
+          in: path
+          description: Id of a message
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: "Successful operation"
+        "400":
+          description: "Invalid chat Id or message Id"
+        "404":
+          description: "Message not found"
+  /api/chats/{id}:
+    get:
+      tags:
+        - Chats
+      summary: Get Chat By Id
+      description: Return a chat by Chat Id from TeamMatch
+      operationId: getChatById
+      parameters:
+        - name: id
+          in: path
+          description: Id of chat to return chat
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: "Successful operation"
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ChatResource'
+        "400":
+          description: "Invalid chat Id"
+        "404":
+          description: "Chat not found with chat Id"
+  /api/chats/{chatId}/messages:
+    get:
+      tags:
+        - Messages
+      summary: Get All Messages By Chat Id
+      description: Get all of the messages from a chat using the chat Id from TeamMatch
+      operationId: getAllChatsByChatId
+      parameters:
+        - name: chatId
+          in: path
+          description: Id of chat to return messages
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: pageable
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/Pageable'
+      responses:
+        "200":
+          description: "Successful operation"
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageMessageResource'
+        "400":
+          description: "Invalid chat Id"
+        "404":
+          description: "Message not found with chat Id"
+    post:
+      tags:
+        - Messages
+      summary: Create Message by Chat Id
+      description: Create a new message by Chat id from TeamMatch
+      operationId: createMessage
+      parameters:
+        - name: chatId
+          in: path
+          required: true
+          description: Id of chat to create a new message
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SaveMessageResource'
+      responses:
+        "200":
+          description: "Successful operation"
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/MessageResource'
+        "400":
+          description: "Invalid fromat of message"
+  /api/chats:
+    get:
+      tags:
+        - Chats
+      summary: Get All Chats
+      description: Get all of the Chats from TeamMatch
+      operationId: getAllChats
+      parameters:
+        - name: pageable
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/Pageable'
+      responses:
+        "200":
+          description: "Successful operation"
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageChatResource'
+    post:
+      tags:
+        - Chats
+      summary: Create a Chat
+      description: Create a new chat by player from TeamMatch
+      operationId: createChat
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SaveChatResource'
+      responses:
+        "200":
+          description: "Successful operation"
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ChatResource'
+        "400":
+          description: "Invalid chat format"
+  /api/messages:
+    get:
+      tags:
+        - Messages
+      summary: Get All Messages
+      description: Get All Messages from TeamMatch
+      operationId: getAllMessages
+      responses:
+        "200":
+          description: default response
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Message'
+components:
+  schemas:
+    ChatResource:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 14
+    SaveMessageResource:
+      required:
+        - message
+        - sentDate
+      type: object
+      properties:
+        message:
+          type: string
+          example: "Hi dude, do u need one more for your squad?"
+        sentDate:
+          type: string
+          example: "2021-06-05 15:34"
+        hyperLink:
+          type: boolean
+          example: false
+    MessageResource:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 21
+        message:
+          type: string
+          example: "Hi dude, do u need one more for your squad?"
+        sentDate:
+          type: string
+          example: "2021-06-05 15:34"
+        hyperLink:
+          type: boolean
+          example: false
+    Pageable:
+      type: object
+      properties:
+        offset:
+          type: integer
+          format: int64
+        sort:
+          $ref: '#/components/schemas/Sort'
+        pageSize:
+          type: integer
+          format: int32
+        pageNumber:
+          type: integer
+          format: int32
+        unpaged:
+          type: boolean
+        paged:
+          type: boolean
+    Sort:
+      type: object
+      properties:
+        sorted:
+          type: boolean
+        unsorted:
+          type: boolean
+        empty:
+          type: boolean
+    PageChatResource:
+      type: object
+      properties:
+        totalPages:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChatResource'
+        number:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/Sort'
+        first:
+          type: boolean
+        last:
+          type: boolean
+        numberOfElements:
+          type: integer
+          format: int32
+        pageable:
+          $ref: '#/components/schemas/Pageable'
+        empty:
+          type: boolean
+    Message:
+      required:
+        - message
+        - sentDate
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        message:
+          type: string
+        sentDate:
+          type: string
+        player:
+          $ref: '#/components/schemas/Player'
+        hyperLink:
+          type: boolean
+    Player:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+        hours:
+          type: integer
+          format: int32
+        last_connection:
+          type: string
+    PageMessageResource:
+      type: object
+      properties:
+        totalPages:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/MessageResource'
+        number:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/Sort'
+        first:
+          type: boolean
+        last:
+          type: boolean
+        numberOfElements:
+          type: integer
+          format: int32
+        pageable:
+          $ref: '#/components/schemas/Pageable'
+        empty:
+          type: boolean
+    SaveChatResource:
+      type: object
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
