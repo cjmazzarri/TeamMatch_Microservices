@@ -12,6 +12,8 @@ tags:
     description: Everything about your TeamMatch teams.
   - name: Filter
     description: Everything about your TeamMatch filters.
+  - name: Player
+    description: Everything about TeamMatch players.
 paths:
   /api/games/{gameId}:
     get:
@@ -297,6 +299,8 @@ paths:
             '*/*':
               schema:
                 type: object
+          description: "Invalid player format"
+
 components:
   schemas:
     SaveGameResource:
@@ -422,3 +426,85 @@ components:
         rating:
           type: number
           example: 3.4
+    PlayerResource:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 2
+        username:
+          type: string
+          example: "Ninja"
+        password:
+          type: string
+          example: "n1nj4pwd"
+        hours:
+          type: integer
+          format: int64
+          example: 5
+        last_connection:
+          type: string
+          example: "2021-06-05 12:34"
+    PagePlayerResource:
+      type: object
+      properties:
+        totalPages:
+          type: integer
+          format: int64
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlayerResource'
+        number:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/Sort'
+        first:
+          type: boolean
+        last:
+          type: boolean
+        numberOfElements:
+          type: integer
+          format: int32
+        pageable:
+          $ref: '#/components/schemas/Pageable'
+        empty:
+          type: boolean
+    Sort:
+      type: object
+      properties:
+        sorted:
+          type: boolean
+        unsorted:
+          type: boolean
+        empty:
+          type: boolean
+    SavePlayerResource:
+      required:
+        - username
+        - password
+        - hours
+        - last_connection
+      type: object
+      properties:
+        username:
+          type: string
+          example: "Ninja"
+        password:
+          type: string
+          example: "n1nj4pwd"
+        hours:
+          type: integer
+          format: int64
+          example: 5
+        last_connection:
+          type: string
+          example: "2021-06-05 12:34"
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
