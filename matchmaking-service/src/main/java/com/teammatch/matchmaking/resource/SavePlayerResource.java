@@ -19,7 +19,6 @@ public class SavePlayerResource {
     private String password;
 
     @NotNull
-    @NotBlank
     private int hours;
 
     @NotNull
