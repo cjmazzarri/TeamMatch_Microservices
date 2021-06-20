@@ -1,5 +1,6 @@
 package com.teammatch.profile.service.impl;
 
+import com.teammatch.profile.client.PlayerClient;
 import com.teammatch.profile.entity.Profile;
 import com.teammatch.profile.exception.ResourceNotFoundException;
 import com.teammatch.profile.repository.ProfileRepository;
@@ -15,6 +16,9 @@ public class ProfileServiceImpl implements ProfileService {
 
     @Autowired
     ProfileRepository profileRepository;
+
+    @Autowired
+    PlayerClient playerClient;
 
     @Override
     public ResponseEntity<?> deleteProfile(Long profileId) {
@@ -55,10 +59,10 @@ public class ProfileServiceImpl implements ProfileService {
         return profileRepository.findByUsername(username);
     }
 
-    public void validatePlayer(Long profileId) {
-        if(!profileRepository.existsById(profileId)){
+    public void validatePlayer(Long playerId) {
+        if(playerClient.getPlayer(playerId).getStatusCode().is4xxClientError()){
             throw new ResourceNotFoundException(
-                    "Player not found with Id " + profileId
+                    "Player not found with Id " + playerId
             );
         }
     }
