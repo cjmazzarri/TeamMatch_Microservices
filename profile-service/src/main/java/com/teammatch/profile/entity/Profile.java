@@ -58,6 +58,7 @@ public class Profile {
     @Transient
     private Player player;
 
+    private Long playerId;
 
     public Profile setId(Long id) {
         this.id = id;
