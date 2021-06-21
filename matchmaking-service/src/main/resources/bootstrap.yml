@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: matchmaking-service
+  cloud:
+    config:
+      uri: http://localhost:8094
+      username: teammatch
+      password: tmroot
+  boot:
+    admin:
+      client:
+        url: http://localhost:8092
