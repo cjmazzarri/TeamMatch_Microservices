@@ -19,7 +19,6 @@ spring:
           predicates:
             - Path=/api/players/**
             - Path=/api/login
-            - Path=/api/profile/**
             - Path=/api/filters/**
             - Path=/api/players/**
             - Path=/api/playersUsername/**
