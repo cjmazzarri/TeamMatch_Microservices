@@ -3,6 +3,6 @@ spring:
     name: gateway-service
   cloud:
     config:
-      uri: http://localhost:8093
+      uri: http://localhost:8090
       username: teammatch
       password: tmroot
