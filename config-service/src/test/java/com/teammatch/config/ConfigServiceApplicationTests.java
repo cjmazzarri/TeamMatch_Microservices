@@ -1,10 +1,10 @@
-package pe.edu.upc.config;
+package com.teammatch.config;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ConfigServerApplicationTests {
+class ConfigServiceApplicationTests {
 
 	@Test
 	void contextLoads() {
