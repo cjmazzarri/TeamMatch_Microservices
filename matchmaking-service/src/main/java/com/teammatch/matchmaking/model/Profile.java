@@ -1,9 +1,11 @@
 package com.teammatch.matchmaking.model;
 
+import lombok.Builder;
 import lombok.Data;
 import java.util.Date;
 
 @Data
+@Builder
 public class Profile {
     private Long profileId;
     private String fullName;
@@ -12,5 +14,5 @@ public class Profile {
     private String gender;
     private String email;
     private String phoneNumber;
-    private Date birthDate;
+    private String birthDate;
 }
