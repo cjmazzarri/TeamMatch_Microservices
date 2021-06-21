@@ -68,12 +68,6 @@ public class PlayerController {
         return convertToResource(playerService.login(player));
     }
 
-    @GetMapping("/profile/{id}")
-    public ResponseEntity<Profile> getProfileByUserId(@PathVariable(name = "id") Long id) {
-        return playerService.getProfile(id);
-    }
-
-
     private Player convertToEntity(SavePlayerResource resource) {
         return mapper.map(resource, Player.class);
     }

@@ -1,6 +1,5 @@
 package com.teammatch.matchmaking.service;
 
-import com.teammatch.matchmaking.client.ProfileClient;
 import com.teammatch.matchmaking.exception.ResourceNotFoundException;
 import com.teammatch.matchmaking.entity.Player;
 import com.teammatch.matchmaking.model.Profile;
@@ -20,9 +19,6 @@ public class PlayerServiceImpl implements PlayerService{
 
     @Autowired
     private PlayerRepository playerRepository;
-
-    @Autowired
-    ProfileClient profileClient;
 
     @Override
     public Player getPlayerById(Long playerId) {
@@ -98,7 +94,4 @@ public class PlayerServiceImpl implements PlayerService{
         return playerRepository.save(player);
     }
 
-    public ResponseEntity<Profile> getProfile(Long profileId) {
-        return profileClient.getProfile(profileId);
-    }
 }
