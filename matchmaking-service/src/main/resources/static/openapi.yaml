@@ -3,7 +3,7 @@ info:
   title: Game Endpoint OpenAPI definition
   version: v1
 servers:
-  - url: http://localhost:8081
+  - url: http://localhost:8094
     description: Generated server url
 tags:
   - name: Game
