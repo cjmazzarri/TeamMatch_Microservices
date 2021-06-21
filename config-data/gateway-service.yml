@@ -1,10 +1,10 @@
-erver:
+server:
   port: 8093
 
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8091/eureka
+      defaultZone: http://localhost:8091/eureka/
 
 spring:
   cloud:
