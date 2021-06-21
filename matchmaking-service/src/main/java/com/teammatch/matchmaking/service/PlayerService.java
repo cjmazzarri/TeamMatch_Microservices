@@ -15,5 +15,4 @@ public interface PlayerService {
     Page<Player> getAllPlayers(Pageable pageable);
     Player login(Player player);
     Player updateLastConnection(Long playerId);
-    ResponseEntity<Profile> getProfile(Long profileId);
 }
