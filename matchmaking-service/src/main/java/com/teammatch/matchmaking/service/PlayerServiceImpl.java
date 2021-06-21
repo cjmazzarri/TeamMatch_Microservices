@@ -1,8 +1,11 @@
 package com.teammatch.matchmaking.service;
 
+import com.teammatch.matchmaking.client.ProfileClient;
 import com.teammatch.matchmaking.exception.ResourceNotFoundException;
 import com.teammatch.matchmaking.entity.Player;
+import com.teammatch.matchmaking.model.Profile;
 import com.teammatch.matchmaking.repository.PlayerRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,10 +14,15 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
+@Slf4j
 @Service
 public class PlayerServiceImpl implements PlayerService{
+
     @Autowired
     private PlayerRepository playerRepository;
+
+    @Autowired
+    ProfileClient profileClient;
 
     @Override
     public Player getPlayerById(Long playerId) {
@@ -88,5 +96,9 @@ public class PlayerServiceImpl implements PlayerService{
         String string_last_connection = formatter.format(last_connection);
         player.setLast_connection(string_last_connection);
         return playerRepository.save(player);
+    }
+
+    public ResponseEntity<Profile> getProfile(Long profileId) {
+        return profileClient.getProfile(profileId);
     }
 }

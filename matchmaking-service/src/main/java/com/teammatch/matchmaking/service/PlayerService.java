@@ -1,6 +1,7 @@
 package com.teammatch.matchmaking.service;
 
 import com.teammatch.matchmaking.entity.Player;
+import com.teammatch.matchmaking.model.Profile;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -14,4 +15,5 @@ public interface PlayerService {
     Page<Player> getAllPlayers(Pageable pageable);
     Player login(Player player);
     Player updateLastConnection(Long playerId);
+    ResponseEntity<Profile> getProfile(Long profileId);
 }

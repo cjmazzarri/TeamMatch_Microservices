@@ -1,6 +1,7 @@
 package com.teammatch.matchmaking.controller;
 
 import com.teammatch.matchmaking.entity.Player;
+import com.teammatch.matchmaking.model.Profile;
 import com.teammatch.matchmaking.resource.PlayerResource;
 import com.teammatch.matchmaking.resource.SavePlayerResource;
 import com.teammatch.matchmaking.service.PlayerService;
@@ -65,6 +66,11 @@ public class PlayerController {
     public PlayerResource login(@Valid @RequestBody SavePlayerResource resource)  {
         Player player = convertToEntity(resource);
         return convertToResource(playerService.login(player));
+    }
+
+    @GetMapping("/profile/{id}")
+    public ResponseEntity<Profile> getProfileByUserId(@PathVariable(name = "id") Long id) {
+        return playerService.getProfile(id);
     }
 
 
