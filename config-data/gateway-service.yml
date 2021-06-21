@@ -1,0 +1,39 @@
+erver:
+  port: 8093
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8091/eureka
+
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        #Rutas de cada servicio:
+        - id: matchmaking-service
+          uri: lb://matchmaking-service
+          predicates:
+            - Path=/api/players/**
+            - Path=/api/login
+            - Path=/api/profile/**
+            - Path=/api/filters/**
+            - Path=/api/players/**
+            - Path=/api/playersUsername/**
+            - Path=/api/teams/**
+            - Path=/api/games/**
+        - id: profile-service
+          uri: lb://profile-service
+          predicates:
+            - Path=/players/**/profile/**
+            - Path=/api/**/profilesUsername
+        - id: communication-service
+          uri: lb://communication-service
+          predicates:
+            - Path=/api/chats/**
+            - Path=/api/chats/
+            - Path=/api/messages/
+            - Path=/api/chats/**/messages/**
