@@ -3,7 +3,7 @@ spring:
     name: matchmaking-service
   cloud:
     config:
-      uri: http://localhost:8094
+      uri: http://localhost:8090
       username: teammatch
       password: tmroot
   boot:
