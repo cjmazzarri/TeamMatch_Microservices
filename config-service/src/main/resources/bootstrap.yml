@@ -2,18 +2,16 @@ server:
   port: 8090
 
 spring:
-  profiles:
-    active: git
   cloud:
     config:
       server:
         git:
-          uri: https://github.com/cjmazzarri/TeamMatch_Microservices
+          uri: https://github.com/cjmazzarri/TeamMatch_Microservices.git
           searchPaths: config-data
-          default-label: "develop"
           username: ${GIT_USER}
           password: ${GIT_PASSWORD}
+          default-label: "master"
   security:
     user:
-      name: root
-      password: s3cr3t
+      name: teammatch
+      password: tmroot
