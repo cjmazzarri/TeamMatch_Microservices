@@ -1,10 +1,15 @@
 package com.teammatch.communication.client;
 
+import com.teammatch.communication.model.Player;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@FeignClient(name = "communication-service")
-@RequestMapping(value = "/communications")
+@FeignClient(name = "player-service", fallback = PlayerHystrixFallbackFactory.class)
+@RequestMapping(value = "/players")
 public interface PlayerClient {
-    //Aqui colocar todos los metodos a utilizar
+    @GetMapping(value = "/{id}")
+    ResponseEntity<Player> getPlayer(@PathVariable("id") long id);
 }
