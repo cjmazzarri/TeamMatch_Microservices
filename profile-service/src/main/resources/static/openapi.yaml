@@ -3,7 +3,7 @@ info:
   title: Profile Endpoint OpenAPI definition
   version: v1
 servers:
-  - url: http://localhost:8080
+  - url: http://localhost:8096
     description: Generated server url
 tags:
   - name: Profile
