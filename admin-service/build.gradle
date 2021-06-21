@@ -1,5 +1,5 @@
 plugins {
-    id 'org.springframework.boot' version '2.5.0'
+    id 'org.springframework.boot' version '2.3.12.RELEASE'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
 }
@@ -12,11 +12,24 @@ repositories {
     mavenCentral()
 }
 
+ext {
+    set('springBootAdminVersion', "2.3.1")
+    set('springCloudVersion', "Hoxton.SR11")
+}
+
 dependencies {
-    implementation group: 'de.codecentric', name: 'spring-boot-admin-starter-server', version: '2.3.0'
-    //https://mvnrepository.com/artifact/de.codecentric/spring-boot-admin-dependencies
-    implementation group: 'de.codecentric', name: 'spring-boot-admin-dependencies', version: '2.3.0', ext: 'pom'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'de.codecentric:spring-boot-admin-starter-server'
+    implementation 'org.springframework.cloud:spring-cloud-starter-config'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "de.codecentric:spring-boot-admin-dependencies:${springBootAdminVersion}"
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
 }
 
 test {
