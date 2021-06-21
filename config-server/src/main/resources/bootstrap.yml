@@ -1,5 +1,5 @@
 server:
-  port: 8081
+  port: 8090
 spring:
   cloud:
     config:
@@ -12,5 +12,5 @@ spring:
         default-label: "master"
   security:
     user:
-      name: root
-      password: s3cr3t
+      name: teammatch
+      password: tmroot
