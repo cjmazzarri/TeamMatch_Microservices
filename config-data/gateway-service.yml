@@ -21,7 +21,7 @@ spring:
         - id: profile-service
           uri: lb://profile-service
           predicates:
-            - Path=/players/**/profile/**, /api/**/profilesUsername
+            - Path=/api/players/**/profiles/**, /api/players/**/profilesUsername
         - id: communication-service
           uri: lb://communication-service
           predicates:
