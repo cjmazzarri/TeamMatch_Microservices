@@ -17,22 +17,12 @@ spring:
         - id: matchmaking-service
           uri: lb://matchmaking-service
           predicates:
-            - Path=/api/players/**
-            - Path=/api/login
-            - Path=/api/filters/**
-            - Path=/api/players/**
-            - Path=/api/playersUsername/**
-            - Path=/api/teams/**
-            - Path=/api/games/**
+            - Path=/api/players/**, /api/login, /api/filters/**, /api/players/**, /api/playersUsername/**, /api/teams/**, /api/games/**
         - id: profile-service
           uri: lb://profile-service
           predicates:
-            - Path=/players/**/profile/**
-            - Path=/api/**/profilesUsername
+            - Path=/players/**/profile/**, /api/**/profilesUsername
         - id: communication-service
           uri: lb://communication-service
           predicates:
-            - Path=/api/chats/**
-            - Path=/api/chats/
-            - Path=/api/messages/
-            - Path=/api/chats/**/messages/**
+            - Path=/api/chats/**, /api/chats/, /api/messages/, /api/chats/**/messages/**
