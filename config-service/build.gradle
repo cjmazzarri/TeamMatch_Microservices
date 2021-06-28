@@ -17,6 +17,8 @@ ext {
 }
 
 dependencies {
+	// https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-bootstrap
+	implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-bootstrap', version: '3.0.3'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.cloud:spring-cloud-config-server'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
