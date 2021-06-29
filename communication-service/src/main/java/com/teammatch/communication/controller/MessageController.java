@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/communication")
 @CrossOrigin
 @Tag(name = "Messages", description = "Message API")
 public class MessageController {
