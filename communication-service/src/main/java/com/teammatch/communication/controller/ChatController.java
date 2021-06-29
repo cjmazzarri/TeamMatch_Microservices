@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping(value = "/api")
+@RequestMapping(value = "/communication")
 @CrossOrigin
 @Tag(name = "Chats", description = "Chats API")
 public class ChatController {
