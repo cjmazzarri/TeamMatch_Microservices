@@ -1,6 +1,6 @@
 openapi: 3.0.1
 info:
-  title: Game Endpoint OpenAPI definition
+  title: Matchmaking Endpoint OpenAPI definition
   version: v1
 servers:
   - url: http://localhost:8094
